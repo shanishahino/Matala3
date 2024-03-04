@@ -1,0 +1,37 @@
+/* animal.css */
+
+/* custom the body to be at the center of the screen */
+body {
+    display: flex;
+    /* center the childs elements horizontally */
+    justify-content: center;
+    /* center the childs elements verticallty */
+    align-items: center;
+
+}
+
+.container {
+    background-color: gainsboro;
+    border-radius: 30px;
+}
+
+#selected-animal h1 {
+    color: white;
+}
+
+.card {
+    margin-top: 20px;
+}
+
+.card-text {
+    font-size: 60px;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+}
+
+#dash-link-btn {
+    margin-right: 15px;
+}

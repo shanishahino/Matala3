@@ -1,0 +1,27 @@
+/* signup.css */
+
+/* custom the body to be at the center of the screen */
+body {
+    display: flex;
+    /* center the childs elements horizontally */
+    justify-content: center;
+    /* center the childs elements verticallty */
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: gainsboro;
+    border-radius: 30px;
+}
+
+.logo-img-container {
+    padding: 30px;
+    width: 100%;
+}
+
+img {
+    border-radius: 100px;
+    max-height: 300px;
+}

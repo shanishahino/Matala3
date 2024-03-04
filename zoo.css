@@ -1,0 +1,28 @@
+/* zoo.css */
+
+
+.row h1, .headline-p {
+    color: white;
+}
+
+.row p {
+    margin: 20px 0;
+}
+
+.card:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: all 1s ease;
+}
+
+.card-animal-img-top {
+    padding: 20px;
+}
+
+#clear-button {
+    width: 30%;
+}
+
+#dash-link-btn {
+    margin-right: 15px;
+}

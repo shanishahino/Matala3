@@ -1,0 +1,229 @@
+<!-- zoo.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./zoo.css" />
+    <link rel="stylesheet" type="text/css" href="./main.css" />
+    <!-- bootstrap import -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <title>Zoo</title>
+    <script src="./main.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- dropdown list of visitors -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Visitors
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li>
+                  <a class="dropdown-item" href="#">Another action</a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+            <!-- visitor details item -->
+            <li class="nav-item">
+              <a
+                id="visitor-details"
+                class="nav-link active"
+                aria-current="page"
+                >Visitor's details</a
+              >
+            </li>
+          </ul>
+          <a href="./dashboard.html">
+            <button id="dash-link-btn" type="button" class="btn btn-outline-info">Dashboard</button>
+          </a>
+          <button
+            id="disconnect-button"
+            class="btn btn-outline-danger"
+            type="submit"
+            onclick="logout()"
+          >
+            Disconnect
+          </button>
+          <button
+            id="reset-data-button"
+            class="btn btn-warning"
+            onclick="resetData()"
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+    </nav>
+
+      <div class="container-fluid bg-light text-center">
+        <!-- row div for headline -->
+        <div class="row align-items-center mb-3 pt-4 bg-dark">
+          <div class="col">
+            <h1>Zoo Gallery</h1>
+            <p class="headline-p">
+              Select one of the animals displayed. <br />
+              Search for animal by one or more the criteries shown.
+            </p>
+          </div>
+        </div>
+
+        <!-- first row div for the search filters -->
+        <div
+          id="first-search-filter-container"
+          class="row gy-2 gx-3 justify-content-evenly row-cols-sm-3 mt-3 mb-3 g-3"
+        >
+          <!-- Color Select element -->
+          <div class="col-auto">
+            <label class="visually-hidden" for="color-search-filter"
+              >Color:</label
+            >
+            <select class="form-select" id="color-search-filter">
+              <option selected>Choose Color</option>
+              <option value="brown">Brown</option>
+              <option value="grey">Grey</option>
+            </select>
+          </div>
+          <!-- Weight number input -->
+          <div class="col-auto">
+            <label class="visually-hidden" for="weight-search-filter"
+              >Weight</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="weight-search-filter"
+              placeholder="Enter Weight"
+            />
+          </div>
+          <!-- Height number input -->
+          <div class="col-auto">
+            <label class="visually-hidden" for="height-search-filter"
+              >Height</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="height-search-filter"
+              placeholder="Enter Height"
+            />
+          </div>
+        </div>
+
+        <!-- second row div for the search filters -->
+        <div
+          id="second-search-filter-container"
+          class="row justify-content-evenly row-cols-sm-3 mt-3 mb-3 g-3"
+        >
+          <!-- Name of animal text input -->
+          <div class="col-auto">
+            <label class="visually-hidden" for="name-search-filter">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name-search-filter"
+              placeholder="Name of the animal"
+            />
+          </div>
+          <!-- Habitat Select element -->
+          <div class="col-auto">
+            <label class="visually-hidden" for="habitat-search-filter"
+              >Habitat</label
+            >
+            <select class="form-select" id="habitat-search-filter">
+              <option selected>Choose Habitat</option>
+              <option value="land">Land</option>
+              <option value="sea">Sea</option>
+            </select>
+          </div>
+          <!-- IsPredator radio buttons element -->
+          <div class="col-auto">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="gridRadios"
+                id="predator-check-search-filter"
+                value="yes"
+              />
+              <label
+                class="form-check-label"
+                for="predator-check-search-filter"
+              >
+                Predator
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="gridRadios"
+                id="not-predator-check-search-filter"
+                value="no"
+              />
+              <label
+                class="form-check-label"
+                for="not-predator-check-search-filter"
+              >
+                Not Predator
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- row div for clear button -->
+        <div class="row justify-content-center">
+          <button
+            id="clear-button"
+            class="btn btn-danger"
+            onclick="resetFilters()"
+            style="display: none"
+          >
+            Clear
+          </button>
+        </div>
+
+        <!-- row div for the animals cards -->
+        <div class="row row-cols-md-3 row-cols-sm-2 pt-5 pb-5 g-4"></div>
+      </div>
+    </div>
+    <script src="zoo.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
