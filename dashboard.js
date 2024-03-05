@@ -29,6 +29,38 @@ function showVisitedAnimals() {
   }
 }
 
+// function to update headlines of visited and feeded animals
+function updateTimesVisitedFeeded() {
+  // get the selectedVisitor from localStorage
+  const selectedVisitor = JSON.parse(localStorage.getItem("selectedVisitor"));
+  // get the html elements of the headlines of the number of visited
+  const numOfVisited = document.getElementById("visited-animals");
+  const numOfFeeded = document.getElementById("feeded-animals");
+
+  if (selectedVisitor) {
+    // update number of visited animals
+    const visitedCount = selectedVisitor.visitedAnimals
+      ? Object.keys(selectedVisitor.visitedAnimals).length
+      : 0;
+    numOfVisited.textContent = `Visited Animals: ${visitedCount}`;
+
+    // update number of feeded animals
+    const feededCount = selectedVisitor.feededAnimals
+      ? Object.keys(selectedVisitor.feededAnimals).length
+      : 0;
+    numOfFeeded.textContent = `Feeded Animals: ${feededCount}`;
+
+    // remove the unecessary sections
+    if (visitedCount == 0) {
+      document.getElementById("visited-animals-headline").style.display =
+        "none";
+    }
+    if (feededCount == 0) {
+      document.getElementById("feeded-animals-headline").style.display = "none";
+    }
+  }
+}
+
 // function to display feeded animals cards
 function showFeededAnimals() {
   const selectedVisitor = JSON.parse(localStorage.getItem("selectedVisitor"));
@@ -66,24 +98,37 @@ function getAnimalByName(animalName) {
 
 function showFavoriteAnimal() {
   const selectedVisitor = JSON.parse(localStorage.getItem("selectedVisitor"));
-  const visitedAnimals =
-    JSON.parse(localStorage.getItem("visitedAnimals")) || {};
-  const visitorVisitedAnimals = visitedAnimals[selectedVisitor.name] || {};
+  const favAnimalSection = document.getElementById("favorite-animal");
 
-  let favoriteAnimal = null;
-  let maxVisits = 0;
+  if (selectedVisitor) {
+    let favoriteAnimal = null;
+    let maxVisits = 0;
 
-  for (const animalName in visitorVisitedAnimals) {
-    if (visitorVisitedAnimals[animalName] > maxVisits) {
-      maxVisits = visitorVisitedAnimals[animalName];
-      favoriteAnimal = animalName;
+    for (const animalName in selectedVisitor.visitedAnimals) {
+      if (selectedVisitor.visitedAnimals[animalName].count > maxVisits) {
+        maxVisits = selectedVisitor.visitedAnimals[animalName].count;
+        favoriteAnimal = animalName;
+      }
     }
-  }
 
-  if (favoriteAnimal) {
-    document.getElementById(
-      "favorite-animal"
-    ).textContent = `Favorite Animal: ${favoriteAnimal} (Visited ${maxVisits} times)`;
+    if (favoriteAnimal) {
+      // clean the view in the div
+      favAnimalSection.innerHTML = "";
+      // create headlines for the favorite animal section
+      const nameHeadline = document.createElement("h4");
+      const timesVisitedHeadline = document.createElement("h5");
+
+      // add content to headlines
+      nameHeadline.textContent = `Favorite Animal: ${favoriteAnimal}`;
+      timesVisitedHeadline.textContent = `Times Visited: ${maxVisits}`;
+
+      // append headlines to the div
+      favAnimalSection.appendChild(nameHeadline);
+      favAnimalSection.appendChild(timesVisitedHeadline);
+    }
+  } else {
+    nameHeadline.textContent = "";
+    timesVisitedHeadline.textContent = "";
   }
 }
 
@@ -139,10 +184,13 @@ function loadVisitor() {
   localStorage.removeItem("selectedAnimal");
 
   if (selectedVisitor) {
+    // update visitor's details - name and coins
     const nameObj = document.getElementById("name-dash");
     const coinsObj = document.getElementById("coins-dash");
     nameObj.textContent = `Name: ${selectedVisitor.name}`;
     coinsObj.textContent = `Coins: ${selectedVisitor.coins}`;
+
+    // update the number of visited and feeded animals
   } else {
     window.location.href = "./login.html";
   }
@@ -154,4 +202,5 @@ document.addEventListener("DOMContentLoaded", function () {
   showVisitedAnimals();
   showFeededAnimals();
   showFavoriteAnimal();
+  updateTimesVisitedFeeded();
 });

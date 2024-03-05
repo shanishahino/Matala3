@@ -46,7 +46,6 @@ function createNewVisitor(event) {
       alert("Name should not start with a digit or special character");
       return false;
     }
-    alert("Name input is valid");
     return true;
   };
 
@@ -66,7 +65,6 @@ function createNewVisitor(event) {
     localStorage.setItem("visitors", JSON.stringify(visitors));
   };
 
-  // end of the function
   if (!validateFormInputs(visitorName)) {
     // visitor's name is not valid
     console.log("Name is  not valid");
@@ -82,11 +80,6 @@ function createNewVisitor(event) {
     alert("Visitor is already exist.\nPlease use a different name");
   }
 }
-
-// eventListener to redirect to login when the button is pressed
-document
-  .getElementById("to-login-button")
-  .addEventListener("click", toLoginRedirect);
 
 // eventListener of the form - pressing the submit button
 const createForm = document.getElementById("create-visitor-form");

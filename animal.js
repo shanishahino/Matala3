@@ -207,7 +207,6 @@ function feedAnimal() {
 }
 
 function visitorGotEaten() {
-  // TODO: remove visitor from the visitors
   const visitors = JSON.parse(localStorage.getItem("visitors"));
   const selectedVisitor = JSON.parse(localStorage.getItem("selectedVisitor"));
   const remainingVisitors = visitors.filter(

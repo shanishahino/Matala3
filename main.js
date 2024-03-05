@@ -272,16 +272,18 @@ function displayVisitorsInDropdown() {
   const visitors = JSON.parse(localStorage.getItem("visitors"));
   // get the html element - dropsown list
   const dropdownList = document.querySelector(".navbar .dropdown-menu");
-  dropdownList.innerHTML = "";
+  if (dropdownList) {
+    dropdownList.innerHTML = "";
 
-  // loop through the visitors object and write each name into a row in the list
-  visitors.forEach((visitor) => {
-    const dropdownItem = document.createElement("a");
-    dropdownItem.className = "dropdown-item";
-    dropdownItem.href = "./login.html";
-    dropdownItem.textContent = visitor.name;
-    dropdownList.appendChild(dropdownItem);
-  });
+    // loop through the visitors object and write each name into a row in the list
+    visitors.forEach((visitor) => {
+      const dropdownItem = document.createElement("a");
+      dropdownItem.className = "dropdown-item";
+      dropdownItem.href = "./login.html";
+      dropdownItem.textContent = visitor.name;
+      dropdownList.appendChild(dropdownItem);
+    });
+  }
 }
 
 // function to handle displaying visitor's name
